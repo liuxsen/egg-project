@@ -4,8 +4,10 @@ import { verify } from 'jsonwebtoken';
 
 export default function auth(): any {
   return async (ctx: Context, next: () => Promise<any>) => {
+    console.log('--------');
     try {
-      const token = ctx.request.header.cookie;
+      const token = ctx.request.header.token;
+      console.log(token);
       const ifValide = verify(token, '123456');
       console.log(ifValide, token);
       if (ifValide) {

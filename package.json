@@ -23,15 +23,20 @@
   "dependencies": {
     "egg": "^2.6.1",
     "egg-onerror": "^2.1.0",
+    "egg-redis": "^2.1.0",
     "egg-scripts": "^2.6.0",
     "egg-sequelize": "^4.2.0",
     "jsonwebtoken": "^8.4.0",
-    "mysql2": "^1.6.4"
+    "mysql2": "^1.6.4",
+    "nodemailer": "^4.7.0"
   },
   "devDependencies": {
+    "@types/ioredis": "^4.0.4",
     "@types/jsonwebtoken": "^8.3.0",
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
+    "@types/nodemailer": "^4.6.5",
+    "@types/redis": "^2.8.8",
     "@types/sequelize": "^4.27.32",
     "@types/supertest": "^2.0.0",
     "autod": "^3.0.1",

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    # 环境变量
+    environment:
+      # mysql密码
+      - MYSQL_ROOT_PASSWORD=123456
+    container_name: 'compose-mysql'
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    container_name: 'compose-redis'

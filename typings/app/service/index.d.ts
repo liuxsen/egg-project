@@ -3,7 +3,7 @@
 
 import 'egg'; // Make sure ts to import egg declaration at first
 import BaseService from '../../../app/service/BaseService';
-import Profile from '../../../app/service/profile';
+import Profile from '../../../app/service/Profile';
 import Shop from '../../../app/service/Shop';
 import User from '../../../app/service/User';
 

@@ -1,5 +1,16 @@
 ## 统一前缀 /api
 
+### post /api/profile/register
+### post /api/profile/login
+
+接收 post 参数
+
++ email string 邮箱
++ password string 密码
+
+
+
+
 ### get /user 主题首页
 
 接收 get 参数
