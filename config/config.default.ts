@@ -8,7 +8,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1543470672414_671';
 
   // add your egg config in here
-  config.middleware = ['log', 'res'];
+  config.middleware = ['log', 'auth', 'res'];
 
   // 插件配置
   config.sequelize = {
@@ -28,6 +28,17 @@ export default (appInfo: EggAppInfo) => {
       cookieName: 'csrfToken', // Cookie 中的字段名，默认为 csrfToken
       sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
     },
+  };
+  config.auth = {
+    match(ctx) {
+      const allowPath = ['/api/profile/login', '/api/profile/register'];
+      const path = ctx.request.path;
+      return !allowPath.includes(path);
+    },
+  };
+  // token
+  config.token = {
+    secret: 'liuxsen',
   };
 
   // add your special config in here

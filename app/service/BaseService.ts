@@ -4,7 +4,7 @@ export default class BaseService extends Service {
   // 查询列表 可以有分页
   public async index(params: any = {}, serviceName: string) {
     const { limit, pn, ...restParams } = params;
-    const offset = +limit * +pn;
+    const offset = +limit * (+pn - 1);
     const modelName = this.getModelName(serviceName);
     if (limit && pn) {
       return await this.ctx.model[modelName].findAndCount({
@@ -15,7 +15,7 @@ export default class BaseService extends Service {
         offset,
       });
     } else {
-      return await this.ctx.model.User.findAll({
+      return await this.ctx.model[modelName].findAll({
         where: params,
       });
     }
@@ -56,6 +56,14 @@ export default class BaseService extends Service {
       },
     });
     return result ? true : false;
+  }
+  // 查找一个
+  public async findOne(params: any, serviceName: string) {
+    const modelName = this.getModelName(serviceName);
+    const result: any = await this.ctx.model[modelName].findOne({
+      where: params,
+    });
+    return result;
   }
   private getModelName(str: string) {
     return firstUpperCase(str);

@@ -1,8 +1,7 @@
-// 客户管理model
 import { Application } from 'egg';
 import { Instance } from 'sequelize';
 
-interface UserAttibutes {
+interface ProfileAttibutes {
   id: number | null;
   email: string;
   password: string;
@@ -13,10 +12,10 @@ interface UserAttibutes {
 
 export default function(app: Application) {
   const { INTEGER, STRING, DATE } = app.Sequelize;
-  type ProfileInstance = Instance<UserAttibutes> & UserAttibutes;
+  type ProfileInstance = Instance<ProfileAttibutes> & ProfileAttibutes;
 
-  const user = app.model.define<ProfileInstance, UserAttibutes>(
-    'user',
+  const profile = app.model.define<ProfileInstance, ProfileAttibutes>(
+    'profile',
     {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       email: STRING,
@@ -28,8 +27,8 @@ export default function(app: Application) {
     {
       underscored: true,
       // 自己定义表名字
-      tableName: 'user',
+      tableName: 'profile',
     },
   );
-  return user;
+  return profile;
 }

@@ -49,7 +49,7 @@ export default class BaseController extends Controller {
       serviceName,
     );
   }
-  private getName() {
+  getName() {
     const path = this.ctx.request.path.split('/')[2];
     return path;
   }
