@@ -1,6 +1,6 @@
 export interface ShopAttibutes {
   id?: number | null;
-  profile_id: number;
+  profile_id?: number;
   name: string;
   address: string;
   is_head: string;
