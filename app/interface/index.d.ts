@@ -1,5 +1,5 @@
 export interface ShopAttibutes {
-  id: number | null;
+  id?: number | null;
   profile_id: number;
   name: string;
   address: string;
@@ -14,7 +14,7 @@ export interface ShopAttibutes {
 }
 
 export interface UserAttibutes {
-  id: number | null;
+  id?: number | null;
   email: string;
   password: string;
   name: string;
@@ -23,7 +23,7 @@ export interface UserAttibutes {
 }
 
 export interface ProfileAttibutes {
-  id: number | null;
+  id?: number | null;
   email: string;
   password: string;
   name: string;
