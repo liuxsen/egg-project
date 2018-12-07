@@ -6,7 +6,7 @@ import { Instance } from 'sequelize';
 import { ShopAttibutes } from '../interface/index';
 
 export default function(app: Application) {
-  const { INTEGER, STRING, DATE, BOOLEAN } = app.Sequelize;
+  const { INTEGER, STRING, DATE } = app.Sequelize;
   type ShopInstance = Instance<ShopAttibutes> & ShopAttibutes;
 
   const shop = app.model.define<ShopInstance, ShopAttibutes>(
@@ -16,9 +16,9 @@ export default function(app: Application) {
       profile_id: INTEGER,
       name: STRING,
       address: STRING,
-      is_head: BOOLEAN,
+      is_head: INTEGER,
       latitude: STRING,
-      longitude: BOOLEAN,
+      longitude: STRING,
       avatar: STRING,
       phone: STRING,
       remark: STRING,

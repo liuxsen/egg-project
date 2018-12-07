@@ -3,7 +3,7 @@ export interface ShopAttibutes {
   profile_id?: number;
   name: string;
   address: string;
-  is_head: string;
+  is_head: number;
   latitude?: string; // 纬度
   longitude?: string; // 经度
   avatar: string; // 店铺头像
