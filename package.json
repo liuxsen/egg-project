@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "egg": "^2.6.1",
+    "egg-multipart": "^2.3.0",
     "egg-onerror": "^2.1.0",
     "egg-redis": "^2.1.0",
     "egg-scripts": "^2.6.0",

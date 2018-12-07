@@ -27,8 +27,8 @@ export const sendEmail = async (email: string) => {
     const mailOptions = {
       from: 'wyliuxsen@163.com', // sender address
       to: email, // list of receivers
-      subject: '邮箱验证', // Subject line
-      text: `验证码是${secert}`, // plain text body
+      subject: 'login', // Subject line
+      text: `${secert}`, // plain text body
       // html: '<b>Hello world email?</b>', // html body
     };
 

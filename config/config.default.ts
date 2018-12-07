@@ -29,11 +29,36 @@ export default (appInfo: EggAppInfo) => {
       sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
     },
   };
+
+  config.multipart = {
+    fileSize: '50mb',
+    mode: 'file',
+  };
+
   config.auth = {
-    match(ctx) {
-      const allowPath = ['/api/profile/login', '/api/profile/register'];
+    ignore(ctx) {
+      const allowPath = [
+        '/api/profile/login',
+        '/api/profile/register',
+        '/api/profile/email',
+        '/api/base/upload',
+      ];
+      const oStaticReg = /^\/public\/static\/.*/g;
+      const oImgReg = /(\.[jpeg|jpg|png])$/;
       const path = ctx.request.path;
-      return !allowPath.includes(path);
+      console.log(path);
+      return (
+        allowPath.includes(path) || oStaticReg.test(path) || oImgReg.test(path)
+      );
+    },
+  };
+
+  config.res = {
+    ignore(ctx) {
+      const oStaticReg = /^\/public\/static\/.*/g;
+      const path = ctx.request.path;
+      console.log(path);
+      return oStaticReg.test(path);
     },
   };
 

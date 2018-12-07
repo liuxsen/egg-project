@@ -4,7 +4,6 @@ import { verify } from 'jsonwebtoken';
 
 export default function auth(): any {
   return async (ctx: Context, next: () => Promise<any>) => {
-    console.log('--------');
     try {
       const token = ctx.request.header.token;
       console.log(token);
@@ -12,6 +11,7 @@ export default function auth(): any {
       console.log(ifValide, token);
       if (ifValide) {
         ctx.session = ifValide;
+        console.log('session', ctx.session);
         await next();
       } else {
         ctx.body = {

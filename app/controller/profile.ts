@@ -6,17 +6,8 @@ export default class ProfileController extends BaseController {
   // 登录
   async login() {
     const ctx = this.ctx;
-    const { email, password, code } = ctx.request.body;
-    // 检查 验证码的合法性
-    const secret = await this.vefiryEmailCode(email);
-    // 如果保存的验证码跟邮箱匹配；通过，否则验证码非法
-    if (secret !== code) {
-      ctx.body = {
-        code: 403,
-        msg: '验证码不正确',
-      };
-      return;
-    }
+    const { email, password } = ctx.request.body;
+
     const serviceName = this.getName();
     const profile = await this.service.profile.findOne(
       {
@@ -25,14 +16,14 @@ export default class ProfileController extends BaseController {
       },
       serviceName,
     );
-    const token = sign({ id: 1 }, '123456');
-    console.log(token);
     if (profile === null) {
       ctx.body = {
         code: 403,
         msg: '用户名或者密码不匹配',
       };
+      return;
     } else {
+      const token = sign({ id: profile.id }, '123456');
       ctx.body = {
         token,
         user: profile,
@@ -42,12 +33,21 @@ export default class ProfileController extends BaseController {
   // 注册
   async register() {
     const ctx = this.ctx;
-    const { email, password } = ctx.request.body;
+    const { email, password, code } = ctx.request.body;
+    // 校验邮箱验证码的合法性
+    const secret = await this.vefiryEmailCode(email);
+    // 如果前端发送过来的 验证码，跟redis中保存的 验证码不一致
+    if (secret !== code) {
+      ctx.body = {
+        code: 405,
+        msg: '验证码非法',
+      };
+      return;
+    }
     const serviceName = this.getName();
     const profile = await this.service.profile.findOne(
       {
         email,
-        password,
       },
       serviceName,
     );
@@ -73,6 +73,7 @@ export default class ProfileController extends BaseController {
       };
     }
   }
+  // 获取验证码
   public async email() {
     const { ctx } = this;
     try {
@@ -82,7 +83,7 @@ export default class ProfileController extends BaseController {
       // 过期时间以秒为单位 验证码 5分钟内有效
       await this.app.redis.set(secretKey, secret, 'EX', 300);
       ctx.body = {
-        verify_code: secret,
+        message: '发送成功',
       };
     } catch (error) {
       console.log(error);
