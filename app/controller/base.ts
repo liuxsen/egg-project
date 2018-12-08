@@ -7,12 +7,10 @@ import { host } from '../config';
 export default class Base extends Controller {
   async upload() {
     const filesReq: any = this.ctx.request;
-    console.log(filesReq.files);
     try {
       // process file or upload to cloud storage
       const ps = filesReq.files.map(async (file: any) => {
         const sNewPath = await this.move(file);
-        console.log(sNewPath);
         return sNewPath;
       });
       const files = await Promise.all(ps);

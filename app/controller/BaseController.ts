@@ -4,7 +4,6 @@ export default class BaseController extends Controller {
   // GET  /users
   async index() {
     // this.ctx.model.User
-    console.log(this.ctx.queries);
     const serviceName = this.getName();
     this.ctx.body = await this.ctx.service[serviceName].index(
       this.ctx.queries,
@@ -23,11 +22,15 @@ export default class BaseController extends Controller {
   async create() {
     const body = this.ctx.request.body;
     console.log(body);
+    console.log('session', this.ctx.session);
+    body.profile_id = this.ctx.session.id;
     const serviceName = this.getName();
-    this.ctx.body = await this.ctx.service[serviceName].create(
+    const result = await this.ctx.service[serviceName].create(
       body,
       serviceName,
     );
+    console.log(result);
+    this.ctx.body = result;
   }
   // PUT /posts/:id
   async update() {

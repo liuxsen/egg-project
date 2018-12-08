@@ -46,7 +46,6 @@ export default (appInfo: EggAppInfo) => {
       const oStaticReg = /^\/public\/static\/.*/g;
       const oImgReg = /(\.[jpeg|jpg|png])$/;
       const path = ctx.request.path;
-      console.log(path);
       return (
         allowPath.includes(path) || oStaticReg.test(path) || oImgReg.test(path)
       );
@@ -57,7 +56,6 @@ export default (appInfo: EggAppInfo) => {
     ignore(ctx) {
       const oStaticReg = /^\/public\/static\/.*/g;
       const path = ctx.request.path;
-      console.log(path);
       return oStaticReg.test(path);
     },
   };

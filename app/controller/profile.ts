@@ -86,7 +86,6 @@ export default class ProfileController extends BaseController {
         message: '发送成功',
       };
     } catch (error) {
-      console.log(error);
       ctx.body = {
         code: 505,
         msg: '邮箱发送失败',

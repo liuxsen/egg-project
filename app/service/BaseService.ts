@@ -28,7 +28,11 @@ export default class BaseService extends Service {
   // 新增
   public async create(params: any, serviceName: string) {
     const modelName = this.getModelName(serviceName);
-    return await this.ctx.model[modelName].create(params);
+    return await this.ctx.model[modelName].create(params).then((res: any) =>
+      res.get({
+        plain: true,
+      }),
+    );
   }
   // 更新
   public async update(id: string | number, params: any, serviceName: string) {

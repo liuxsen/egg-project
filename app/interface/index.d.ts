@@ -3,7 +3,9 @@ export interface ShopAttibutes {
   profile_id?: number;
   name: string;
   address: string;
-  is_head: number;
+  is_head: number; // 是否总店
+  show_wx: number; // 是否在微信上显示
+  is_default: number; // 是否默认门店
   latitude?: string; // 纬度
   longitude?: string; // 经度
   avatar: string; // 店铺头像
