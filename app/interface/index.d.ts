@@ -59,7 +59,7 @@ export interface worktypeAttribute {
   shop_id: number; // 店长id
   name: string; // 工种名字
   remark?: string; // 备注
-  profile_id: number; // 店长id
+  profile_id?: number; // 店长id
   order: number; // 排序
   created_at?: Date;
   updated_at?: Date;
