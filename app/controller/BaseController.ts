@@ -21,9 +21,6 @@ export default class BaseController extends Controller {
   // POST /posts
   async create() {
     const body = this.ctx.request.body;
-    console.log(body);
-    console.log('session', this.ctx.session);
-    body.profile_id = this.ctx.session.id;
     const serviceName = this.getName();
     const result = await this.ctx.service[serviceName].create(
       body,

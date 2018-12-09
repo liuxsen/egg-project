@@ -22,6 +22,8 @@ export default function(app: Application) {
       avatar: STRING,
       phone: STRING,
       remark: STRING,
+      is_default: INTEGER,
+      show_wx: INTEGER,
       created_at: DATE,
       updated_at: DATE,
     },

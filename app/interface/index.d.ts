@@ -32,3 +32,23 @@ export interface ProfileAttibutes {
   created_at?: Date;
   updated_at?: Date;
 }
+
+// 员工模型
+export interface StaffAttributes {
+  id?: number | null;
+  shop_id: number | null;
+  base_salary: number; // 底薪
+  name: string; // 姓名
+  intro: string; // 基本简介
+  job_num: string; // 工号
+  work_type_id: number; // 工种
+  phone: string; // 手机号
+  weixin: string; // 微信号
+  good_at: string; // 擅长领域
+  quit_time: Date; // 离职时间
+  quit_reson: string; // 离职原因
+  quit: number; // 是否离职
+  receipt_num: number; // 接单数量
+  created_at?: Date;
+  updated_at?: Date;
+}

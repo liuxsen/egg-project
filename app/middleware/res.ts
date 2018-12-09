@@ -9,10 +9,8 @@ export default function resMiddleWare(): any {
       msg: ctx.response.message,
       status: ctx.response.status,
       data: {
-        result: {
-          ...ctx.body,
-          code: ctx.body.code || ctx.response.status,
-        },
+        code: ctx.body.code || ctx.response.status,
+        result: ctx.body,
       },
     };
   };

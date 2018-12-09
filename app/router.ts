@@ -8,4 +8,5 @@ export default (app: Application) => {
   router.post('email', '/api/profile/email', controller.profile.email);
   router.resources('profile', '/api/profile', controller.profile);
   router.resources('shop', '/api/shop', controller.shop);
+  router.resources('staff', '/api/staff', controller.staff);
 };
