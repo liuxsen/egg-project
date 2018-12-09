@@ -6,6 +6,7 @@ import Profile from '../../../app/model/profile';
 import Shop from '../../../app/model/shop';
 import Staff from '../../../app/model/staff';
 import User from '../../../app/model/user';
+import Worktype from '../../../app/model/worktype';
 
 declare module 'sequelize' {
   interface Sequelize {
@@ -13,5 +14,6 @@ declare module 'sequelize' {
     Shop: ReturnType<typeof Shop>;
     Staff: ReturnType<typeof Staff>;
     User: ReturnType<typeof User>;
+    Worktype: ReturnType<typeof Worktype>;
   }
 }

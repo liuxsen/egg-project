@@ -7,6 +7,7 @@ import Profile from '../../../app/service/Profile';
 import Shop from '../../../app/service/Shop';
 import Staff from '../../../app/service/Staff';
 import User from '../../../app/service/User';
+import Worktype from '../../../app/service/Worktype';
 
 declare module 'egg' {
   interface IService {
@@ -15,5 +16,6 @@ declare module 'egg' {
     shop: Shop;
     staff: Staff;
     user: User;
+    worktype: Worktype;
   }
 }

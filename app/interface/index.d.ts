@@ -54,11 +54,13 @@ export interface StaffAttributes {
 }
 
 // 工种
-export interface work_type {
+export interface worktypeAttribute {
   id?: number | null; // 工种id
   shop_id: number; // 店长id
   name: string; // 工种名字
   remark?: string; // 备注
   profile_id: number; // 店长id
   order: number; // 排序
+  created_at?: Date;
+  updated_at?: Date;
 }

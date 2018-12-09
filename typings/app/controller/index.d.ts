@@ -8,6 +8,7 @@ import Base from '../../../app/controller/base';
 import Profile from '../../../app/controller/profile';
 import Shop from '../../../app/controller/shop';
 import User from '../../../app/controller/user';
+import Worktype from '../../../app/controller/worktype';
 
 declare module 'egg' {
   interface IController {
@@ -17,5 +18,6 @@ declare module 'egg' {
     profile: Profile;
     shop: Shop;
     user: User;
+    worktype: Worktype;
   }
 }
