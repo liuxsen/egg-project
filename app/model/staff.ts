@@ -14,6 +14,7 @@ export default function(app: Application) {
     {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       shop_id: INTEGER, // 店铺id
+      profile_id: INTEGER, // 店长id
       name: STRING, // 姓名
       intro: STRING, // 基本简介
       job_num: STRING, // 工号

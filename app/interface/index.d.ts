@@ -37,6 +37,7 @@ export interface ProfileAttibutes {
 export interface StaffAttributes {
   id?: number | null;
   shop_id: number | null;
+  profile_id?: number; // 所属的店长id
   base_salary?: number; // 底薪
   name: string; // 姓名
   intro?: string; // 基本简介

@@ -6,17 +6,22 @@ export default class BaseService extends Service {
     const { limit, pn, ...restParams } = params;
     const offset = +limit * (+pn - 1);
     const modelName = this.getModelName(serviceName);
+    const profileId = this.ctx.session.id;
     if (limit && pn) {
       return await this.ctx.model[modelName].findAndCount({
         where: {
           ...restParams,
+          profile_id: profileId,
         },
         limit: +params.limit,
         offset,
       });
     } else {
       return await this.ctx.model[modelName].findAll({
-        where: params,
+        where: {
+          ...params,
+          profile_id: profileId,
+        },
       });
     }
   }
@@ -28,6 +33,7 @@ export default class BaseService extends Service {
   // 新增
   public async create(params: any, serviceName: string) {
     const modelName = this.getModelName(serviceName);
+    params.profile_id = this.ctx.session.id;
     return await this.ctx.model[modelName].create(params).then((res: any) =>
       res.get({
         plain: true,
@@ -37,11 +43,13 @@ export default class BaseService extends Service {
   // 更新
   public async update(id: string | number, params: any, serviceName: string) {
     const modelName = this.getModelName(serviceName);
+    const profileId = this.ctx.session.id;
     const affectRows: number[] = await this.ctx.model[modelName].update(
       params,
       {
         where: {
           id,
+          profile_id: profileId,
         },
       },
     );
@@ -54,9 +62,11 @@ export default class BaseService extends Service {
   // 删除
   public async destroy(id: string | number, serviceName: string) {
     const modelName = this.getModelName(serviceName);
+    const profileId = this.ctx.session.id;
     const result: number = await this.ctx.model[modelName].destroy({
       where: {
         id,
+        profile_id: profileId,
       },
     });
     return result ? true : false;
@@ -64,8 +74,12 @@ export default class BaseService extends Service {
   // 查找一个
   public async findOne(params: any, serviceName: string) {
     const modelName = this.getModelName(serviceName);
+    const profileId = this.ctx.session.id;
     const result: any = await this.ctx.model[modelName].findOne({
-      where: params,
+      where: {
+        ...params,
+        profile_id: profileId,
+      },
     });
     return result;
   }
