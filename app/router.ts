@@ -10,4 +10,5 @@ export default (app: Application) => {
   router.resources('shop', '/api/shop', controller.shop);
   router.resources('staff', '/api/staff', controller.staff);
   router.resources('worktype', '/api/worktype', controller.worktype);
+  router.resources('serviceType', '/api/serviceType', controller.serviceType);
 };

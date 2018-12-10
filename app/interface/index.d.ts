@@ -57,11 +57,24 @@ export interface StaffAttributes {
 // 工种
 export interface worktypeAttribute {
   id?: number | null; // 工种id
+  profile_id?: number; // 店长id
   shop_id: number; // 店长id
   name: string; // 工种名字
   remark?: string; // 备注
-  profile_id?: number; // 店长id
   order?: number; // 排序
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+// 服务项目
+export interface serviceTypeAttribute {
+  id?: number | null; // 服务项目id
+  profile_id?: number; // 店长id
+  work_type_id: number; //工种
+  name: string; //服务项目名称
+  percentage_type: number; // 提成类型 0 比例 1 固定值
+  individual: number; // 散客提成
+  member: number; // 会员提成
   created_at?: Date;
   updated_at?: Date;
 }
