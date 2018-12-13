@@ -18,7 +18,10 @@
     "ci": "npm run lint && npm run cov && npm run tsc",
     "autod": "autod",
     "lint": "tslint --project . -c tslint.json",
-    "clean": "ets clean"
+    "clean": "ets clean",
+    "create-migrate": "sequelize migration:generate",
+    "async-db": "sequelize db:migrate",
+    "undo-db": "npx sequelize db:migrate:undo"
   },
   "dependencies": {
     "egg": "^2.6.1",
@@ -46,6 +49,7 @@
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.16.0",
     "egg-ts-helper": "^1.11.0",
+    "sequelize-cli": "^5.4.0",
     "tslib": "^1.9.0",
     "tslint": "^4.0.0",
     "typescript": "^3.0.0"

@@ -6,6 +6,7 @@
     "space-before-function-paren": false,
     "interface-name": [true, "never-prefix"],
     "adjacent-overload-signatures": true,
+    "only-arrow-functions": false,
     "member-access": [false],
     "member-ordering": [
       true,

@@ -3,22 +3,22 @@
 import { Application } from 'egg';
 import { Instance } from 'sequelize';
 
-import { serviceTypeAttribute } from '../interface/index';
+import { IServiceItemAttribute } from '../interface';
 
 export default function(app: Application) {
   const { INTEGER, STRING, DATE } = app.Sequelize;
-  type ServiceTypeInstance = Instance<serviceTypeAttribute> &
-    serviceTypeAttribute;
+  type ServiceItemInstance = Instance<IServiceItemAttribute> &
+    IServiceItemAttribute;
 
-  const serviceType = app.model.define<
-    ServiceTypeInstance,
-    serviceTypeAttribute
+  const serviceItem = app.model.define<
+    ServiceItemInstance,
+    IServiceItemAttribute
   >(
-    'serviceType',
+    'serviceItem',
     {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       profile_id: INTEGER,
-      work_type_id: INTEGER,
+      worktype_id: INTEGER,
       name: STRING,
       percentage_type: INTEGER,
       individual: INTEGER,
@@ -29,8 +29,13 @@ export default function(app: Application) {
     {
       underscored: true,
       // 自己定义表名字
-      tableName: 'service_type',
+      tableName: 'service_item',
     },
   );
-  return serviceType;
+  // 关联
+  serviceItem.associate = function() {
+    // service_item 表中 有work_type_id 作为外键
+    serviceItem.belongsTo(app.model.Worktype);
+  };
+  return serviceItem;
 }

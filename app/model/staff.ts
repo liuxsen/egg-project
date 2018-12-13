@@ -3,7 +3,7 @@
 import { Application } from 'egg';
 import { Instance } from 'sequelize';
 
-import { StaffAttributes } from '../interface/index';
+import { StaffAttributes } from '../interface';
 
 export default function(app: Application) {
   const { INTEGER, STRING, DATE } = app.Sequelize;
@@ -18,7 +18,7 @@ export default function(app: Application) {
       name: STRING, // 姓名
       intro: STRING, // 基本简介
       job_num: STRING, // 工号
-      work_type_id: INTEGER, // 工种
+      worktype_id: INTEGER, // 工种
       phone: STRING, // 手机号
       weixin: STRING, // 微信号
       good_at: STRING, // 擅长领域

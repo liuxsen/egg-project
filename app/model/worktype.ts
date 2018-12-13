@@ -2,7 +2,7 @@
 import { Application } from 'egg';
 import { Instance } from 'sequelize';
 
-import { worktypeAttribute } from '../interface/index';
+import { worktypeAttribute } from '../interface';
 
 export default function(app: Application) {
   const { INTEGER, STRING, DATE } = app.Sequelize;
@@ -23,8 +23,13 @@ export default function(app: Application) {
     {
       underscored: true,
       // 自己定义表名字
-      tableName: 'worktype',
+      tableName: 'work_type',
     },
   );
+
+  worktype.associate = function() {
+    // service_item 中有 work_type_id 作为外键
+    worktype.hasMany(app.model.ServiceItem);
+  };
   return worktype;
 }

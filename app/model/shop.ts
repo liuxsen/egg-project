@@ -3,7 +3,7 @@
 import { Application } from 'egg';
 import { Instance } from 'sequelize';
 
-import { ShopAttibutes } from '../interface/index';
+import { ShopAttibutes } from '../interface';
 
 export default function(app: Application) {
   const { INTEGER, STRING, DATE } = app.Sequelize;

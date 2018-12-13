@@ -2,20 +2,18 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg'; // Make sure ts to import egg declaration at first
+import ServiceItem from '../../../app/model/ServiceItem';
+import Worktype from '../../../app/model/Worktype';
 import Profile from '../../../app/model/profile';
-import ServiceType from '../../../app/model/serviceType';
 import Shop from '../../../app/model/shop';
 import Staff from '../../../app/model/staff';
-import User from '../../../app/model/user';
-import Worktype from '../../../app/model/worktype';
 
 declare module 'sequelize' {
   interface Sequelize {
+    ServiceItem: ReturnType<typeof ServiceItem>;
+    Worktype: ReturnType<typeof Worktype>;
     Profile: ReturnType<typeof Profile>;
-    ServiceType: ReturnType<typeof ServiceType>;
     Shop: ReturnType<typeof Shop>;
     Staff: ReturnType<typeof Staff>;
-    User: ReturnType<typeof User>;
-    Worktype: ReturnType<typeof Worktype>;
   }
 }

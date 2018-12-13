@@ -1,3 +1,19 @@
+
+## 数据库设计方式
+
+
++ 新建 `migration npx sequelize migration:generate --name=modelName` 或者 `npm run create-migrate -- --name=modelName`
++ 修改文档 [sequelize-cli](http://docs.sequelizejs.com/class/lib/query-interface.js~QueryInterface.html)
++ 同步数据库  `npx sequelize db:migrate` 或者 `npm run async-db`
++ 回退数据库 `npx sequelize db:migrate:undo`
+
+
+```js
+// egg中 model 访问是首字母大写   service 首字母小写  
+// ctx.model.User
+// ctx.service.servicetype
+```
+
 ## 统一前缀 /api
 
 ### post /api/profile/register [注册]

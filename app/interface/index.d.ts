@@ -42,7 +42,7 @@ export interface StaffAttributes {
   name: string; // 姓名
   intro?: string; // 基本简介
   job_num?: string; // 工号
-  work_type_id: number; // 工种
+  worktype_id: number; // 工种
   phone: string; // 手机号
   weixin?: string; // 微信号
   good_at: string; // 擅长领域
@@ -67,10 +67,10 @@ export interface worktypeAttribute {
 }
 
 // 服务项目
-export interface serviceTypeAttribute {
+export interface IServiceItemAttribute {
   id?: number | null; // 服务项目id
   profile_id?: number; // 店长id
-  work_type_id: number; //工种
+  worktype_id: number; //工种
   name: string; //服务项目名称
   percentage_type: number; // 提成类型 0 比例 1 固定值
   individual: number; // 散客提成

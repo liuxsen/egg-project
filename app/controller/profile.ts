@@ -1,5 +1,5 @@
 import { sign } from 'jsonwebtoken';
-import { sendEmail } from '../utils/index';
+import { sendEmail } from '../utils';
 import BaseController from './BaseController';
 
 export default class ProfileController extends BaseController {
@@ -7,15 +7,10 @@ export default class ProfileController extends BaseController {
   async login() {
     const ctx = this.ctx;
     const { email, password } = ctx.request.body;
-
-    const serviceName = this.getName();
-    const profile = await this.service.profile.findOne(
-      {
-        email,
-        password,
-      },
-      serviceName,
-    );
+    const profile = await this.service.profile.findOne({
+      email,
+      password,
+    });
     if (profile === null) {
       ctx.body = {
         code: 403,
@@ -45,12 +40,9 @@ export default class ProfileController extends BaseController {
       return;
     }
     const serviceName = this.getName();
-    const profile = await this.service.profile.findOne(
-      {
-        email,
-      },
-      serviceName,
-    );
+    const profile = await this.service.profile.findOne({
+      email,
+    });
     if (profile !== null) {
       ctx.body = {
         code: 405,

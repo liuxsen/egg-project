@@ -50,7 +50,14 @@ export default class BaseController extends Controller {
     );
   }
   getName() {
-    const path = this.ctx.request.path.split('/')[2];
-    return path;
+    let sRoutePath = this.ctx.request.path.split('/')[2].toLowerCase();
+    const oReg = /-(\w)/g;
+    sRoutePath = sRoutePath.replace(oReg, (match: any, item) => {
+      if (match) {
+        return item.toUpperCase();
+      }
+    });
+    console.log(sRoutePath);
+    return sRoutePath;
   }
 }

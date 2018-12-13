@@ -1,7 +1,7 @@
 import { Application } from 'egg';
 import { Instance } from 'sequelize';
 
-import { ProfileAttibutes } from '../interface/index';
+import { ProfileAttibutes } from '../interface';
 
 export default function(app: Application) {
   const { INTEGER, STRING, DATE } = app.Sequelize;
