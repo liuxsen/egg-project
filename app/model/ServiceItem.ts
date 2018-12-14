@@ -18,11 +18,8 @@ export default function(app: Application) {
     {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       profile_id: INTEGER,
-      worktype_id: INTEGER,
       name: STRING,
-      percentage_type: INTEGER,
-      individual: INTEGER,
-      member: INTEGER,
+      intro: STRING,
       created_at: DATE,
       updated_at: DATE,
     },
@@ -34,8 +31,7 @@ export default function(app: Application) {
   );
   // 关联
   serviceItem.associate = function() {
-    // service_item 表中 有work_type_id 作为外键
-    serviceItem.belongsTo(app.model.Worktype);
+    serviceItem.hasMany(app.model.TeachPercent);
   };
   return serviceItem;
 }

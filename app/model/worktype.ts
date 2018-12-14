@@ -9,7 +9,7 @@ export default function(app: Application) {
   type WorktypeInstance = Instance<worktypeAttribute> & worktypeAttribute;
 
   const worktype = app.model.define<WorktypeInstance, worktypeAttribute>(
-    'worktype',
+    'work_type',
     {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       shop_id: INTEGER,
@@ -28,8 +28,8 @@ export default function(app: Application) {
   );
 
   worktype.associate = function() {
-    // service_item 中有 work_type_id 作为外键
-    worktype.hasMany(app.model.ServiceItem);
+    worktype.hasMany(app.model.TeachPercent);
+    worktype.hasMany(app.model.CardPercent);
   };
   return worktype;
 }

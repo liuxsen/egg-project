@@ -70,11 +70,82 @@ export interface worktypeAttribute {
 export interface IServiceItemAttribute {
   id?: number | null; // 服务项目id
   profile_id?: number; // 店长id
-  worktype_id: number; //工种
   name: string; //服务项目名称
-  percentage_type: number; // 提成类型 0 比例 1 固定值
-  individual: number; // 散客提成
-  member: number; // 会员提成
+  intro?: string; //服务项目介绍
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+// 会员卡类型
+export interface ICardTypeAttribute {
+  id?: number | null; // 服务项目id
+  name: string; // 会员卡名字
+  profile_id: number;
+  type?: number; // 会员卡类型 0 储值卡 1 套餐卡
+  remark?: string; // 备注
+  path?: string; // 会员卡图片地址
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+// 技师提成
+export interface ITeachPercentAttribute {
+  id?: number | null; // 服务项目id
+  profile_id?: number;
+  work_type_id: number; // 工种
+  service_item_id: number; // 服务项目
+  percent_type: number; // 提成类型 0 固定 1 比例
+  percent: number; // 提成额度
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+// 会员卡提成
+export interface ICardPercentAttribute {
+  id?: number | null; // 服务项目id
+  profile_id?: number;
+  work_type_id: number; // 工种
+  card_type_id: number; // 卡种
+  percent_type: number; // 提成类型 0 固定 1 比例
+  percent: number; // 提成额度
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+// 会员信息
+export interface IMemberAttribute {
+  id?: number | null; // 服务项目id
+  profile_id?: number;
+  shop_id: number; // 店铺id
+  card_type_id: number; // 卡种
+  name: string; // 姓名
+  charge_amount: number; // 充值金额
+  intro?: number; // 介绍人
+  sex?: number; // 性别
+  phone?: string; // 手机号
+  birthday?: Date; // 生日
+  remark?: string; // 备注
+  donation_amount?: number; // 赠送金额
+  integral?: number; // 积分
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+// 充值记录
+export interface IChargeRecord {
+  id?: number | null; // 服务项目id
+  member_id: number; // 会员id
+  shop_id: number; // 门店
+  price: number; // 售价
+  bsn_type: number; // 业务类型 0 办卡 1 充值
+  pay_type: number; // 0 微信 1 支付宝 2 现金
+  profile_id?: number;
+  give_item_id?: number; //赠送  服务项目id
+  give?: number; // 赠送金额
+  discount?: number; // 折扣
+  offer?: number; //优惠金额
+  pay_amount?: number; // 实付金额
+  remark?: string; // 备注
   created_at?: Date;
   updated_at?: Date;
 }

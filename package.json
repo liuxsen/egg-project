@@ -21,7 +21,7 @@
     "clean": "ets clean",
     "create-migrate": "sequelize migration:generate",
     "async-db": "sequelize db:migrate",
-    "undo-db": "npx sequelize db:migrate:undo"
+    "undo-db": "sequelize db:migrate:undo"
   },
   "dependencies": {
     "egg": "^2.6.1",
