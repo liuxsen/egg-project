@@ -2,17 +2,12 @@ import { Service } from 'egg';
 import { firstUpperCase } from '../utils';
 export default class BaseService extends Service {
   // 查询列表 可以有分页
-  public async index(
-    params: any = {},
-    serviceName: string,
-    includes: string[],
-  ) {
+  public async index(params: any = {}, serviceName: string, includes: any) {
     const { limit, pn, ...restParams } = params;
     const offset = +limit * (+pn - 1);
     const modelName = this.getModelName(serviceName);
     console.log('modelName', modelName);
     const profileId = this.ctx.session.id;
-
     const options: any = {
       where: {
         ...restParams,
@@ -23,30 +18,40 @@ export default class BaseService extends Service {
     if (includes && includes.length) {
       // 需要关联的model模型数组
       const aModel = includes.map((item) => {
-        return {
-          model: this.app.model[item],
-        };
+        if (item.name) {
+          return {
+            ...item,
+            model: this.app.model[item.name],
+          };
+        } else {
+          return {
+            model: this.app.model[item],
+          };
+        }
       });
       options.include = aModel;
     }
-    // options.include = [
-    //   {
-    //     model: this.app.model.Worktype,
-    //   },
-    // ];
     // 如果需要分页
+    console.log(options);
+    console.log(modelName);
     if (limit && pn) {
       options.limit = +params.limit;
       options.offset = offset;
+      return await this.ctx.model[modelName].findAndCountAll(options);
+    } else {
+      return await this.ctx.model[modelName].findAll(options);
     }
-    console.log(options);
-    console.log(modelName);
-    return await this.ctx.model[modelName].findAll(options);
   }
   // 根据id查找
   public async findById(id: number | string, serviceName: string) {
     const modelName = this.getModelName(serviceName);
-    return await this.ctx.model[modelName].findById(id);
+    const result = await this.ctx.model[modelName].findById(id);
+    console.log(result);
+    if (result) {
+      return result;
+    } else {
+      return {};
+    }
   }
   // 新增
   public async create(params: any, serviceName: string) {
@@ -90,7 +95,7 @@ export default class BaseService extends Service {
     return result ? true : false;
   }
   // 查找一个
-  public async findOne(params: any, serviceName: string, includes: string[]) {
+  public async findOne(params: any, serviceName: string, includes: any) {
     const modelName = this.getModelName(serviceName);
     const profileId = this.ctx.session.id;
     const options: any = {
@@ -103,9 +108,16 @@ export default class BaseService extends Service {
     if (includes && includes.length) {
       // 需要关联的model模型数组
       const aModel = includes.map((item) => {
-        return {
-          model: this.app.model[item],
-        };
+        if (item.name) {
+          return {
+            ...item,
+            model: this.app.model[item.name],
+          };
+        } else {
+          return {
+            model: this.app.model[item],
+          };
+        }
       });
       options.include = aModel;
     }
