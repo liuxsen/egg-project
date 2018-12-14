@@ -4,7 +4,6 @@
 + `docker-compose up -d`
 + `npm run dev`
 
-
 ## 数据库设计方式
 
 + 新建迁移 `migration npx sequelize migration:generate --name=modelName` 或者 `npm run create-migrate -- --name=modelName`
