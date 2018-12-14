@@ -6,7 +6,7 @@ import { Instance } from 'sequelize';
 import { IChargeRecord } from '../interface';
 
 export default function(app: Application) {
-  const { INTEGER, DATE, STRING } = app.Sequelize;
+  const { INTEGER, STRING } = app.Sequelize;
   type ChargeRecordInstance = Instance<IChargeRecord> & IChargeRecord;
 
   const chargeRecord = app.model.define<ChargeRecordInstance, IChargeRecord>(
@@ -25,11 +25,12 @@ export default function(app: Application) {
       offer: INTEGER, // 优惠金额
       pay_amount: INTEGER, // 实付金额
       remark: STRING, // 备注
-      created_at: DATE,
-      updated_at: DATE,
+      // created_at: DATE,
+      // updated_at: DATE,
     },
     {
       underscored: true,
+      timestamps: false,
       // 自己定义表名字
       tableName: 'charge_record',
     },

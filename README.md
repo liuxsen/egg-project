@@ -4,6 +4,7 @@
 + `docker-compose up -d`
 + `npm run dev`
 
+
 ## 数据库设计方式
 
 + 新建迁移 `migration npx sequelize migration:generate --name=modelName` 或者 `npm run create-migrate -- --name=modelName`
@@ -11,8 +12,19 @@
 + 同步数据库  `npx sequelize db:migrate` 或者 `npm run async-db`
 + 回退数据库 `npx sequelize db:migrate:undo` 或者 `npm run undo-db`
 
+### model 定义注意事项
 
-### model 关联操作
++ underscored: true, // 采用蛇形定义
++ timestamps: false, // 不适用updated_at created_at 字段
++ tableName: 'charge_record', // 自己定义表名字
+
+
+### model 操作
+
+#### 增删改查注意
+
+> 通过Sequelize获取的模型对象都是一个DAO（Data Access Object）对象，这些对象会拥有许多操作数据库表的实例对象方法（比如：save、update、destroy等），需要获取“干净”的JSON对象可以调用get({'plain': true})。
+
 
 #### 定义model关联关系
 
@@ -120,7 +132,10 @@ public async show() {
 + staff
 + worktype
 
+## git 操作
 
++ [用git commit --amend命令修改提交信息](https://itbilu.com/other/relate/NkwVgPTbl.html)
++ [git reset HEAD撤消add暂存区文件和git checkout撤消文件修改](https://itbilu.com/other/relate/Ek6phDaZg.html)
 
 ## 业务方面
 
