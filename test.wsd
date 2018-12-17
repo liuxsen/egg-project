@@ -1,0 +1,83 @@
+
+@startuml '分支图'
+
+start
+
+:step 1;
+
+if (try) then (true)
+  :step 2;
+  :step 3;
+  :step 4;
+  :setp 5;
+else (false)
+  :error;
+  end
+endif
+
+stop
+
+@enduml
+
+
+
+@startuml '时序图'
+
+autonumber
+
+actor "用户" as User
+participant "浏览器" as Browser
+participant "服务端" as Server #orange
+
+activate User
+
+User -> Browser: 输入 URL
+activate Browser
+
+Browser -> Server: 请求服务器
+activate Server
+
+Server -> Server: 模板渲染
+note right of Server: 这是一个注释
+
+Server -> Browser: 返回 HTML
+deactivate Server
+
+Browser --> User
+
+@enduml
+
+
+' node 应用研发部署流程
+@startuml
+autonumber
+' hide footbox
+
+title node应用研发部署流程
+
+actor 开发者 as user
+participant "代码仓库（gitlab）" as gitlab
+participant "持续集成系统" as ci
+participant "运维发布系统" as sys
+participant "服务器" as server
+
+==研发流程==
+
+user -> gitlab : 提交代码
+gitlab -> ci : 单元测试
+ci-> ci: 打包
+note right of ci: tar 或docker
+ci->sys: 推送
+note right of sys: 存储到oss
+
+
+==上线回滚流程==
+
+user -> ci: 选择要上线的版本
+ci->server : 推送
+server->server: 解压
+note right of server: 无需安装依赖，快速且确定
+server->server: 启动
+server->sys
+
+@enduml
